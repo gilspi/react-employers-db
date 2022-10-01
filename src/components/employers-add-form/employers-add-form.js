@@ -19,10 +19,12 @@ class EmployersAddForm extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.props.onAdd(this.state.name, this.state.salary);
+        if (this.state.name.length > 3 && this.state.salary > 3){
+            this.props.onAdd(this.state.name, this.state.salary);
+        }
         this.setState({
             name: '',
-            salary: ''
+            salary: '',
         })
     }
 
@@ -37,7 +39,8 @@ class EmployersAddForm extends Component {
                     className="add-form d-flex">
                     <input type="text"
                         className="form-control new-post-label"
-                        placeholder="Name?"
+                        id="name"
+                        placeholder={'Name?'}
                         name="name"
                         value={name} 
                         onChange={this.onValueChange}/>
